@@ -1,25 +1,57 @@
 (() => {
-
     let pictures = [{
-            id: 1,
-            src: 'Images_18/singleChoice/Eng-2021_2_1_3_21.png'
-        },
-        {
-            id: 2,
-            src: 'Images_18/singleChoice/Eng-2021_2_1_3_22.png'
-        },
-        {
-            id: 3,
-            src: 'Images_18/singleChoice/Eng-2021_2_1_3_23.png'
-        }
+        id: 1,
+        src: 'Images_18/singleChoice/Eng-2021_2_1_3_21.png',
+        sound: 'Images_18/singleChoice/11.mp3'
+    },
+    {
+        id: 2,
+        src: 'Images_18/singleChoice/Eng-2021_2_1_3_22.png',
+        sound: 'Images_18/singleChoice/22.mp3'
+    },
+    {
+        id: 3,
+        src: 'Images_18/singleChoice/Eng-2021_2_1_3_23.png',
+        sound: 'Images_18/singleChoice/33.mp3'
+    }
     ];
 
-// START BUTTON PLAY PAUSE
-    const playButton = document.querySelector('.buttonPlayPause--play');
-    playButton.addEventListener('click', () => {
-      playButton.classList.toggle('buttonPlayPause--active');
-    });
-// END BUTTON
+
+    // START BUTTON PLAY PAUSE
+    let isPlaying = false;
+    const playSoundsButon = (soundSrc) => {
+        let audio = document.createElement('audio');
+        audio.setAttribute('src', soundSrc);
+        let playButon_body = document.createElement('div');
+        playButon_body.classList.add('buttonPlayPausePlayPause_wrap');
+        playButon_body.classList.add('buttonPlayPause--play');
+        let playButon_one = document.createElement('div');
+        playButon_one.classList.add('buttonPlayPause__shape');
+        playButon_one.classList.add('buttonPlayPause__shape--one');
+        let playButon_two = document.createElement('div');
+        playButon_two.classList.add('buttonPlayPause__shape');
+        playButon_two.classList.add('buttonPlayPause__shape--two');
+        playButon_body.append(playButon_one, playButon_two);
+        playButon_body.addEventListener('click', function (e) {
+            isPlaying ? audio.pause() : audio.play();
+            e.target.classList.toggle('buttonPlayPause--active');
+            audio.onplaying = function () {
+                isPlaying = true;
+            };
+            audio.onpause = function () {
+                isPlaying = false;
+            };
+            audio.onended = function () {
+                e.target.classList.remove('buttonPlayPause--active');
+                isPlaying = false;
+            }; 
+        });
+        return playButon_body;
+    }
+
+
+
+    // END BUTTON
 
     let task = document.querySelector('.singleChoice')
     const interakt_zadanie = task.parentElement;
@@ -60,6 +92,9 @@
     function insertAnswers(arr) {
         shuffleArr(pictures).forEach(item => {
             let picture = document.createElement('div')
+            //SOUND
+            picture.appendChild(playSoundsButon(item.sound));
+            //SOUND
             picture.classList.add('singleChoice_pic')
             picture.style.backgroundImage = `url(${item.src})`
             picture.style.position = 'relative'
@@ -148,7 +183,7 @@
         let div = document.createElement('div')
         let img = document.createElement('img')
         img.src = e
-            // img.src = item.style.backgroundImage.slice(5, -2)
+        // img.src = item.style.backgroundImage.slice(5, -2)
         div.append(img)
         modal.append(div)
         let close = document.createElement('div')
