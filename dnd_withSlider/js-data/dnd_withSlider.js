@@ -55,7 +55,7 @@ import scaleImage from './funcScaleImage.js';
       name: 'oakLeaf2',
       src: 'Images_1/DOH_3-4_7_1_9.png',
       tag: 'oak',
-      audioSrc: 'sound/dnd_withSlider/007.mp3'
+      audioSrc: 'sound/dnd_withSlider/008.mp3'
     },
     {
       id: 5,
@@ -69,7 +69,7 @@ import scaleImage from './funcScaleImage.js';
       name: 'oakLeaf3',
       src: 'Images_1/DOH_3-4_7_1_11.png',
       tag: 'oak',
-      audioSrc: 'sound/dnd_withSlider/007.mp3'
+      audioSrc: 'sound/dnd_withSlider/008.mp3'
     },
     {
       id: 7,
@@ -83,7 +83,7 @@ import scaleImage from './funcScaleImage.js';
       name: 'mapleLeaf3',
       src: 'Images_1/DOH_3-4_7_1_13.png',
       tag: 'maple',
-      audioSrc: 'sound/dnd_withSlider/007.mp3'
+      audioSrc: 'sound/dnd_withSlider/009.mp3'
     },
   ];
   // это контейнер для данного задания, для каждого нужно будет вписывать свой id, который был присвоен в html
@@ -136,7 +136,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
 
   let sliderWrapperSize = dragBox.offsetParent.clientWidth;
 
-  dragBox.addEventListener('pointerdown', mouseDown);
+  task.addEventListener('pointerdown', mouseDown);
   drop.addEventListener('click', onBtnResetClick);
   check_your.addEventListener('click', onBtnTestClick);
 
@@ -259,6 +259,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
     if (
       !event.target.classList.contains('dragPicture') &&
       !event.target.classList.contains('dragPicture_box')
+      
     )
       return;
 
@@ -340,9 +341,14 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
     }
 
     draggingItem.onpointerup = function () {
+      console.log('pointerup',event.targe )
       startAction = true;
       checkButton_classList_changer();
       if (clickWithoutMove) {
+        if(event.target.classList.contains('buttonPlayPausePlayPause_wrap')){
+          onSoundIconClick(event)
+          return
+        }
         if (event.target.classList.contains('dragPlace')) {
           setTimeout(
             () =>
@@ -501,12 +507,28 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       isPaused = false;
     })
   );*/
+  
   function onSoundIconClick(e) {
+    let isPlaying = false;
+    e.stopPropagation()
+    console.log('play')
     //findSoundAndPlayPause("drop-data", e.target);
-    const findedSound = [...audioFiles].find(
+    const audio = [...audioFiles].find(
       (el) => el.id === e.target.getAttribute('drop-data')
     );
-    findedSound.play()
+    isPlaying ? audio.pause() : audio.play();
+            e.target.classList.toggle('buttonPlayPause--active');
+            audio.onplaying = function () {
+                isPlaying = true;
+            };
+            audio.onpause = function () {
+                isPlaying = false;
+            };
+            audio.onended = function () {
+                e.target.classList.remove('buttonPlayPause--active');
+                isPlaying = false;
+            }; 
+    //findedSound.play()
   }
   /*function findSoundAndPlayPause(attrName, target) {
     const findedSound = [...audioFiles].find(

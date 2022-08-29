@@ -76,9 +76,12 @@
     width: 30%;
     border-radius: 10px;
 }
-/* BUTTON STYLES */
-
-.buttonPlayPausePlayPause_wrap {
+ /* BUTTON STYLES */
+  
+ .buttonPlayPausePlayPause_wrap {
+    position: absolute;
+    top: 1%;
+    left: 1%;
     box-sizing: border-box;
     padding: 0 4px 0 0;
     width: 23px;
@@ -93,6 +96,7 @@
     border-radius: 50%;
   }
   .buttonPlayPause--play .buttonPlayPause__shape {
+    pointer-events: none;
     width: 9px;
     height: 22px;
     background-color: black;
@@ -115,4 +119,3 @@
     -webkit-clip-path: polygon(50% 15%, 100% 15%, 100% 85%, 50% 85%);
     transform: translateX(0px);
   }
-  
