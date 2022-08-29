@@ -12,7 +12,14 @@
             id: 3,
             src: 'Images_18/singleChoice/Eng-2021_2_1_3_23.png'
         }
-    ]
+    ];
+
+// START BUTTON PLAY PAUSE
+    const playButton = document.querySelector('.buttonPlayPause--play');
+    playButton.addEventListener('click', () => {
+      playButton.classList.toggle('buttonPlayPause--active');
+    });
+// END BUTTON
 
     let task = document.querySelector('.singleChoice')
     const interakt_zadanie = task.parentElement;
