@@ -260,64 +260,32 @@ function renderDnDSingleMarkup(
 
   const audioFiles = taskWrapper.querySelectorAll(".dndOneToOne_audio");
 
-  // dragBox.addEventListener("pointerdown", mouseDown);
   [...dragBox.children].forEach((el) => {
     el.addEventListener("pointerdown", mouseDown);
   });
+
   drop.addEventListener("click", onBtnResetClick);
 
   dropBox.addEventListener("click", onDropBoxClick);
-  // dropBox.addEventListener("click", onImgSoundClick);
-
-  // function onDropBoxClick(event) {
-  //   if (event.target.classList.contains("dropPicture")) {
-  //     scaleImage(event.target);
-  //   }
-
-  // }
-  function onDropBoxClick(e) {
-    // console.log(e.target);
-    if (e.target.classList.contains("dropPicture")) {
-      scaleImage(e.target);
-    }
-    // if (e.target.classList.contains("soundBox")) {
-    if (e.target.classList.contains("buttonPlayPausePlayPause_wrap")) {
-      findSoundAndPlayPause("drop-data", e.target);
-      // removeActiveSoundCardClass();
-      // resetSound(currentSound);
-      // e.target.classList.add("buttonPlayPause--active");
-      // const findedSound = [...audioFiles].find(
-      //   (el) =>
-      //     el.id ===
-      //     e.target.parentElement.attributes.getNamedItem("drop-data").value
-      // );
-      // currentSound = findedSound;
-      // // findedSound.play();
-      // isPlaying ? currentSound.pause() : currentSound.play();
-      // // e.target.classList.toggle("buttonPlayPause--active");
-      // currentSound.onplaying = function () {
-      //   isPlaying = true;
-      //   e.target.classList.add("buttonPlayPause--active");
-      // };
-      // currentSound.onpause = function () {
-      //   isPlaying = false;
-      //   e.target.classList.remove("buttonPlayPause--active");
-      // };
-      // currentSound.onended = function () {
-      //   e.target.classList.remove("buttonPlayPause--active");
-      //   isPlaying = false;
-      // };
-    }
-  }
 
   [...audioFiles].forEach((el) =>
     el.addEventListener("ended", (e) => {
-      // console.log(e.target);
       e.target
         .closest(".buttonPlayPausePlayPause_wrap")
         .classList.remove("buttonPlayPause--active");
     })
   );
+
+  function onDropBoxClick(e) {
+    if (e.target.classList.contains("dropPicture")) {
+      scaleImage(e.target);
+    }
+
+    if (e.target.classList.contains("buttonPlayPausePlayPause_wrap")) {
+      findSoundAndPlayPause("drop-data", e.target);
+    }
+  }
+
   function findSoundAndPlayPause(attrName, target) {
     const findedSound = [...audioFiles].find(
       (el) =>
@@ -329,7 +297,6 @@ function renderDnDSingleMarkup(
       isPlaying = true;
       removeActiveSoundCardClass();
 
-      // target.classList.add("buttonPlayPause--active");
       target.classList.remove("buttonPlayPause--active");
     } else if (
       currentSound &&
@@ -339,15 +306,10 @@ function renderDnDSingleMarkup(
       currentSound.play();
       isPlaying = false;
 
-      // addCheckClass(target);
       target.classList.add("buttonPlayPause--active");
-
-      // target.classList.remove("buttonPlayPause--active");
     } else {
       removeActiveSoundCardClass();
 
-      // addCheckClass(target);
-      // target.classList.add("buttonPlayPause--active");
       target.classList.add("buttonPlayPause--active");
       resetSound(currentSound);
       isPlaying = false;
@@ -364,18 +326,6 @@ function renderDnDSingleMarkup(
       currentSound = null;
     }
   }
-
-  // function onImgSoundClick(e) {
-  //   if (!e.target.classList.contains("soundBox")) return;
-  //   removeActiveSoundCardClass();
-  //   resetSound(currentSound);
-  //   e.target.classList.add("dnd-check");
-  //   const findedSound = [...audioFiles].find(
-  //     (el) => el.id === e.target.attributes.getNamedItem("drop-data").value
-  //   );
-  //   currentSound = findedSound;
-  //   findedSound.play();
-  // }
 
   function removeActiveSoundCardClass() {
     const currentActiveCard = document.querySelector(
