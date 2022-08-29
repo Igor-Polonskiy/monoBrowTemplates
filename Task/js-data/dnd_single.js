@@ -236,6 +236,8 @@ function renderDnDSingleMarkup(
   let elemBelow;
   let currentSound;
 
+  let isPlaying = false;
+
   let startAction = false;
 
   const interakt_zadanie = taskWrapper.parentElement;
@@ -278,23 +280,82 @@ function renderDnDSingleMarkup(
     if (e.target.classList.contains("dropPicture")) {
       scaleImage(e.target);
     }
-    if (e.target.classList.contains("soundBox")) {
-      removeActiveSoundCardClass();
-      resetSound(currentSound);
-      e.target.classList.add("dnd-check");
-      const findedSound = [...audioFiles].find(
-        (el) => el.id === e.target.attributes.getNamedItem("drop-data").value
-      );
-      currentSound = findedSound;
-      findedSound.play();
+    // if (e.target.classList.contains("soundBox")) {
+    if (e.target.classList.contains("buttonPlayPausePlayPause_wrap")) {
+      findSoundAndPlayPause("drop-data", e.target);
+      // removeActiveSoundCardClass();
+      // resetSound(currentSound);
+      // e.target.classList.add("buttonPlayPause--active");
+      // const findedSound = [...audioFiles].find(
+      //   (el) =>
+      //     el.id ===
+      //     e.target.parentElement.attributes.getNamedItem("drop-data").value
+      // );
+      // currentSound = findedSound;
+      // // findedSound.play();
+      // isPlaying ? currentSound.pause() : currentSound.play();
+      // // e.target.classList.toggle("buttonPlayPause--active");
+      // currentSound.onplaying = function () {
+      //   isPlaying = true;
+      //   e.target.classList.add("buttonPlayPause--active");
+      // };
+      // currentSound.onpause = function () {
+      //   isPlaying = false;
+      //   e.target.classList.remove("buttonPlayPause--active");
+      // };
+      // currentSound.onended = function () {
+      //   e.target.classList.remove("buttonPlayPause--active");
+      //   isPlaying = false;
+      // };
     }
   }
 
   [...audioFiles].forEach((el) =>
     el.addEventListener("ended", (e) => {
-      e.target.parentElement.classList.remove("dnd-check");
+      // console.log(e.target);
+      e.target
+        .closest(".buttonPlayPausePlayPause_wrap")
+        .classList.remove("buttonPlayPause--active");
     })
   );
+  function findSoundAndPlayPause(attrName, target) {
+    const findedSound = [...audioFiles].find(
+      (el) =>
+        el.id === target.parentElement.attributes.getNamedItem(attrName).value
+    );
+
+    if (currentSound && currentSound.id === findedSound.id && !isPlaying) {
+      currentSound.pause();
+      isPlaying = true;
+      removeActiveSoundCardClass();
+
+      // target.classList.add("buttonPlayPause--active");
+      target.classList.remove("buttonPlayPause--active");
+    } else if (
+      currentSound &&
+      currentSound.id === findedSound.id &&
+      isPlaying
+    ) {
+      currentSound.play();
+      isPlaying = false;
+
+      // addCheckClass(target);
+      target.classList.add("buttonPlayPause--active");
+
+      // target.classList.remove("buttonPlayPause--active");
+    } else {
+      removeActiveSoundCardClass();
+
+      // addCheckClass(target);
+      // target.classList.add("buttonPlayPause--active");
+      target.classList.add("buttonPlayPause--active");
+      resetSound(currentSound);
+      isPlaying = false;
+
+      currentSound = findedSound;
+      currentSound.play();
+    }
+  }
 
   function resetSound(currentSound) {
     if (currentSound) {
@@ -317,10 +378,12 @@ function renderDnDSingleMarkup(
   // }
 
   function removeActiveSoundCardClass() {
-    const currentActiveCard = document.querySelector(".soundBox.dnd-check");
+    const currentActiveCard = document.querySelector(
+      ".buttonPlayPausePlayPause_wrap.buttonPlayPause--active"
+    );
 
     if (currentActiveCard) {
-      currentActiveCard.classList.remove("dnd-check");
+      currentActiveCard.classList.remove("buttonPlayPause--active");
     }
   }
 
@@ -540,11 +603,15 @@ function renderDnDSingleMarkup(
           : "";
         const isSound = picture.audioSrc
           ? `<div class='soundBox' drop-data=${picture.id}>
-                            <audio class="dndOneToOne_audio" id=${picture.id} src=${picture.audioSrc}>
+                <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play">
+                    <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
+                    <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
+                    <audio class="dndOneToOne_audio" id=${picture.id} src=${picture.audioSrc}>
                               Your browser does not support the
                               <code>audio</code> element.
-                            </audio>
-                        </div>`
+                    </audio>
+                </div>
+            </div>`
           : "";
 
         return `<div class="dropPlace">
