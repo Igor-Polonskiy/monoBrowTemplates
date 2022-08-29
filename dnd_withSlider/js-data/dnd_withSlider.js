@@ -439,13 +439,21 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       .map(picture => {
         const isSound =
           picture.audioSrc &&
-          `<div class="icon_speaker_button dropTitleSound" drop-data=${picture.id}>
+         /* `<div class="icon_speaker_button dropTitleSound" drop-data=${picture.id}>
                             <div class="icon_speaker_volume"></div>
                             <button class="drag_sound_icon" drop-data=${picture.id}>123</button>
                             <audio class="dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none">
                               Your browser does not support the <code>audio</code> element.
                             </audio>
-                        </div>`;
+                        </div>`*/
+                        `
+                      <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" drop-data=${picture.id}>
+                        <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
+                        <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
+                        <audio class="dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none">
+                              Your browser does not support the <code>audio</code> element.
+                            </audio>
+                      </div>`
         return `<div
 
                 class="dragPicture_box"
@@ -480,19 +488,19 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
   }
 
   const audioFiles = task.querySelectorAll(".dndIWS_audio");
-  const audioIcons = task.querySelectorAll(".drag_sound_icon");
+  const audioIcons = task.querySelectorAll(".buttonPlayPausePlayPause_wrap");
 
   [...audioIcons].forEach((el) => {
     el.addEventListener("click", onSoundIconClick);
   });
-  [...audioFiles].forEach((el) =>
+  /*[...audioFiles].forEach((el) =>
     el.addEventListener("ended", (e) => {
       e.target.parentElement.classList.remove("animatingSoundIconPlay");
       e.target.parentElement.classList.remove("staticSoundIconPause");
 
       isPaused = false;
     })
-  );
+  );*/
   function onSoundIconClick(e) {
     //findSoundAndPlayPause("drop-data", e.target);
     const findedSound = [...audioFiles].find(
