@@ -1,5 +1,132 @@
 import scaleImage from './funcScaleImage.js';
 
+
+
+
+(() => {
+  // массив входящих картинок для поля куда переносятся картинки (максимум 5-6 элементов),
+  // в поле tag указывается ключевое слово для сопаставления поля для сбрасывания и картинки для сбрасывания
+  const dropCards = [
+    {
+      id: 1,
+      name: '1',
+      src: 'Images_1/05-1.png',
+      tag: '1',
+    },
+    {
+      id: 2,
+      name: '2',
+      src: 'Images_1/05-2.png',
+      tag: '2',
+    },
+    {
+      id: 3,
+      name: '3',
+      src: 'Images_1/05-3.png',
+      tag: '3',
+    }
+
+
+
+  ];
+  //массив входящих картинок для поля откуда картинки будут переноситься(любое количество)(максимум по 3 шт на дро при 4 и более дропах, при 3 и менее - по 6 штук на дроп)
+  //в поле tag указывается ключевое слово для сопаставления поля для сбрасывания и картинки для сбрасывания
+  const dragCards = [
+    {
+      id: 1,
+      name: 'apple',
+      src: 'Images_1/05-4.jpg',
+      tag: '1',
+      audioSrc: 'sound/dnd_withSlider/007.mp3'
+    },
+    {
+      id: 2,
+      name: 'chess',
+      src: 'Images_1/05-5.jpg',
+      tag: '1',
+      audioSrc: 'sound/dnd_withSlider/007.mp3'
+    },
+    {
+      id: 3,
+      name: 'girl',
+      src: 'Images_1/05-6.jpg',
+      tag: '1',
+      audioSrc: 'sound/dnd_withSlider/007.mp3'
+    },
+    {
+      id: 4,
+      name: 'pigalica',
+      src: 'Images_1/05-7.jpg',
+      tag: '1',
+      audioSrc: 'sound/dnd_withSlider/008.mp3'
+    },
+    {
+      id: 5,
+      name: 'malina',
+      src: 'Images_1/05-8.jpg',
+      tag: '2',
+      audioSrc: 'sound/dnd_withSlider/007.mp3'
+    },
+    {
+      id: 6,
+      name: 'shipovnik',
+      src: 'Images_1/05-9.jpg',
+      tag: '2',
+      audioSrc: 'sound/dnd_withSlider/008.mp3'
+    },
+    {
+      id: 7,
+      name: 'gvozdika',
+      src: 'Images_1/05-10.jpg',
+      tag: '2',
+      audioSrc: 'sound/dnd_withSlider/007.mp3'
+    },
+    {
+      id: 8,
+      name: 'raketa',
+      src: 'Images_1/05-11.jpg',
+      tag: '2',
+      audioSrc: 'sound/dnd_withSlider/009.mp3'
+    },
+    {
+      id: 9,
+      name: 'ogurec',
+      src: 'Images_1/05-12.jpg',
+      tag: '3',
+      audioSrc: 'sound/dnd_withSlider/009.mp3'
+    },
+    {
+      id: 10,
+      name: 'horovod',
+      src: 'Images_1/05-13.jpg',
+      tag: '3',
+      audioSrc: 'sound/dnd_withSlider/009.mp3'
+    },
+    {
+      id: 11,
+      name: 'pomidor',
+      src: 'Images_1/05-14.jpg',
+      tag: '3',
+      audioSrc: 'sound/dnd_withSlider/009.mp3'
+    },
+    {
+      id: 12,
+      name: 'popugai',
+      src: 'Images_1/05-15.jpg',
+      tag: '3',
+      audioSrc: 'sound/dnd_withSlider/009.mp3'
+    },
+  ];
+  // это контейнер для данного задания, для каждого нужно будет вписывать свой id, который был присвоен в html
+  const task = document.getElementById('task-2');
+  // здесь указывается имя папки, где хранятся все картинки к заданиям
+  const imageFolder = "Images_1";
+  //если нужен фон жля дроп зон(одинаковый для всех, например корзинка) то прописываем путь к картинке, в противном случае са=тавим значение null
+ // const dropBackgroundimg = /*`${imageFolder}/DOH_3-4_7_1_5.png`*/null
+
+  renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder)
+})();
+
 (() => {
   // массив входящих картинок для поля куда переносятся картинки (максимум 5-6 элементов),
   // в поле tag указывается ключевое слово для сопаставления поля для сбрасывания и картинки для сбрасывания
@@ -94,7 +221,7 @@ import scaleImage from './funcScaleImage.js';
  // const dropBackgroundimg = /*`${imageFolder}/DOH_3-4_7_1_5.png`*/null
 
   renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder)
-})()
+})();
 
 function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
   let draggingItem;
@@ -111,13 +238,13 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
   const result = headCheck.querySelector('.result');
 
 
-  const dropBox = task.querySelector('.dropPlaceWrapper');
-  const dragBox = task.querySelector('.slider_box');
+  const dropBox = task.querySelector('.withSlider_dropPlaceWrapper');
+  const dragBox = task.querySelector('.withSlider_slider_box');
   const leftBtn = task.querySelector('.arrowButton_left_event');
   const rightBtn = task.querySelector('.arrowButton_right_event');
   const dropBoxWidth = dropBox.clientWidth
 
-  const checkTask = task.querySelector('.checkTask');
+  //const checkTask = task.querySelector('.checkTask');
 
   dropBox.insertAdjacentHTML(
     'beforeend',
@@ -148,16 +275,16 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
   function checkButton_classList_changer() {
     if (check_your.classList.contains('check_your_active') && !startAction) {
       check_your.classList.remove('check_your_active');
-      check_your.removeEventListener('click', checkTask);
+      check_your.removeEventListener('click', onBtnTestClick);
     } else if (!check_your.classList.contains('check_your_active') && startAction) {
-      check_your.removeEventListener('click', checkTask);
+      check_your.removeEventListener('click', onBtnTestClick);
       check_your.classList.add('check_your_active');
-      check_your.addEventListener('click', checkTask);
+      check_your.addEventListener('click', onBtnTestClick);
     }
   }
   function onDropBoxClick(event) {
     if (
-      !event.target.classList.contains('dropPicture') 
+      !event.target.classList.contains('withSlider_dropPicture') 
     )
       return;
     scaleImage(event.target, `${imageFolder}/close.png`);
@@ -174,6 +301,9 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
   }
 
   function onBtnLeftClick() {
+    sliderSize = dragBox.scrollWidth;
+    sliderItemWidth = dragBox.children[0].clientWidth;
+    showArrows();
     if (sliderShift < 0) {
       sliderShift += sliderItemWidth;
       dragBox.style.left = `${sliderShift}px`;
@@ -183,7 +313,10 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
       }
     }
   }
-  function onBtnRightClick() {
+  function onBtnRightClick(e) {
+    sliderSize = dragBox.scrollWidth;
+    sliderItemWidth = dragBox.children[0].clientWidth;
+    showArrows();
     if (sliderShift > -sliderSize + sliderWrapperSize) {
       sliderShift -= sliderItemWidth;
       dragBox.style.left = `${sliderShift}px`;
@@ -192,6 +325,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
     if (sliderShift < -sliderSize + sliderWrapperSize) {
       rightBtn.classList.add('is-disabled');
     }
+    console.log('rightclick',sliderShift,sliderSize)
   }
 
   function feedBackChanger(state) {
@@ -263,9 +397,9 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
       
     )
       return;*/
-     if (event.target.classList.contains('dragPicture')) {
+     if (event.target.classList.contains('withSlider_dragPicture')) {
       draggingItem = event.target.parentElement
-    } else if (event.target.classList.contains('dragPicture_box')) {
+    } else if (event.target.classList.contains('withSlider_dragPicture_box')) {
       draggingItem = event.target;
     } else return
 
@@ -351,7 +485,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
           onSoundIconClick(event)
           return
         }*/
-        if (event.target.classList.contains('dragPlace')) {
+        if (event.target.classList.contains('withSlider_dragPlace')) {
           setTimeout(
             () =>
               scaleImage(event.target.firstElementChild, `${imageFolder}/close.png`),
@@ -365,21 +499,21 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
       document.removeEventListener('pointermove', onMouseMove);
       draggingItem.style.cursor = 'grab';
 
-      if (elemBelow.classList.contains('dropPlace_imageBox')) {
+      if (elemBelow.classList.contains('withSlider_dropPlace_imageBox')&&(elemBelow.children.length<4)) {
         dropAppend(elemBelow, draggingItem);
       } else if (
-        elemBelow.classList.contains('dragPicture') &&
+        elemBelow.classList.contains('withSlider_dragPicture') &&
         elemBelow.parentElement.parentElement.tagName !== 'BODY' &&
         !elemBelow.parentElement.parentElement.classList.contains(
-          'slider_box',
-        )
+          'withSlider_slider_box',
+        )&&(elemBelow.parentElement.parentElement.children.length<4)
       ) {
         dropAppend(elemBelow.parentElement.parentElement, draggingItem);
       } else if (
-        elemBelow.classList.contains('dragPlace') &&
+        elemBelow.classList.contains('withSlider_dragPlace') &&
         elemBelow.parentElement.parentElement.tagName !== 'BODY' &&
         !elemBelow.parentElement.parentElement.classList.contains(
-          'slider_box',
+          'withSlider_slider_box',
         )
       ) {
         dropAppend(elemBelow.parentElement, draggingItem);
@@ -428,21 +562,20 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
   //console.log(widthPic)
   function createDropPictureCardsMarkup(pictures) {
     let widthPic = (dropBoxWidth / dropCards.length) - 50 / dropCards.length
-    let back = dropBackgroundimg ? `background-image: url(${dropBackgroundimg})` : null
     return pictures
       .map(picture => {
-        return `<div class="dropPlace" style="width: ${widthPic}px;">
-            <div class="dropPicture_box"  style="width: ${widthPic}px;">
+        return `<div class="withSlider_dropPlace" style="width: ${widthPic}px;">
+            <div class="withSlider_dropPicture_box"  style="width: ${widthPic}px;">
 
             <img
-              class="dropPicture"
+              class="withSlider_dropPicture"
               src=${picture.src}
               alt=${picture.name}
 
               draggable="false"
             />
             </div>
-            <div drop-data=${picture.tag} class="dropPlace_imageBox" style="${back} ;width: ${widthPic}px; "></div>
+            <div drop-data=${picture.tag} class="withSlider_dropPlace_imageBox" style="width: ${widthPic}px; "></div>
               </div>
                                   `;
       })
@@ -464,18 +597,18 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
                       <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" drop-data=${picture.id}>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
-                        <audio class="dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none">
+                        <audio class="withSlider_dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none">
                               Your browser does not support the <code>audio</code> element.
                             </audio>
                       </div>`
         return `<div
 
-                class="dragPicture_box"
+                class="withSlider_dragPicture_box"
                 draggable="false"
                 drag-data=${picture.tag}
               >
               <img
-              class="dragPicture"
+              class="withSlider_dragPicture"
               src=${picture.src}
               alt=${picture.name}
 
@@ -501,7 +634,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
     return array;
   }
 
-  const audioFiles = task.querySelectorAll(".dndIWS_audio");
+  const audioFiles = task.querySelectorAll(".withSlider_dndIWS_audio");
   const audioIcons = task.querySelectorAll(".buttonPlayPausePlayPause_wrap");
 
   [...audioIcons].forEach((el) => {
