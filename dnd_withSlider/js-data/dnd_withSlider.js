@@ -91,12 +91,12 @@ import scaleImage from './funcScaleImage.js';
   // здесь указывается имя папки, где хранятся все картинки к заданиям
   const imageFolder = "Images_1";
   //если нужен фон жля дроп зон(одинаковый для всех, например корзинка) то прописываем путь к картинке, в противном случае са=тавим значение null
-  const dropBackgroundimg = /*`${imageFolder}/DOH_3-4_7_1_5.png`*/null
+ // const dropBackgroundimg = /*`${imageFolder}/DOH_3-4_7_1_5.png`*/null
 
-  renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, dropBackgroundimg)
+  renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder)
 })()
 
-function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, dropBackgroundimg) {
+function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
   let draggingItem;
   let elemBelow;
   let sliderItemWidth;
@@ -157,8 +157,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
   }
   function onDropBoxClick(event) {
     if (
-      !event.target.classList.contains('dropPicture') &&
-      !event.target.classList.contains('dropPlace_imageBox')
+      !event.target.classList.contains('dropPicture') 
     )
       return;
     scaleImage(event.target, `${imageFolder}/close.png`);
