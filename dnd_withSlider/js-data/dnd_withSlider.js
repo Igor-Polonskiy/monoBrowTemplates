@@ -341,7 +341,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
     }
 
     draggingItem.onpointerup = function () {
-      console.log('pointerup',event.targe )
+      console.log('pointerup',event.target )
       startAction = true;
       checkButton_classList_changer();
       if (clickWithoutMove) {
@@ -393,6 +393,10 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       if (widthChilds <= sliderWrapperSize) {
         rightBtn.classList.add('is-disabled');
       }
+      sliderShift = 0;
+    sliderSize = dragBox.scrollWidth;
+    showArrows();
+      
     };
   }
 

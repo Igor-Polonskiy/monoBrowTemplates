@@ -91,6 +91,7 @@
     justify-content: center;
     flex-direction: row;
     cursor: pointer;
+    z-index: 5;
   }
   .buttonPlayPause--play {
     border-radius: 50%;
