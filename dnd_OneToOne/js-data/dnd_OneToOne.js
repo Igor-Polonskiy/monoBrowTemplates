@@ -8,34 +8,34 @@
   // Если какие-то поля не нужны, то ставится ''
   // в поле tag пишется уникальное слово для каждой пары сопоставляемых элементов, по которому сверяется правильность сопоставления
   // в поле id пишется уникальное значение, по которому воспроизводятся звуки
-  // два массива с данными: в первщм указываются данные по верхнему ряду, во втором по нижнему,
+  // два массива с данными: в первом указываются данные по верхнему ряду, во втором по нижнему,
 
   // Если перемещаемые элементы просто нужно сопоставить с другими (без строгих ограничений),
-  // то в поле tag прописать одинаковые слова
+  // то в поле tag прописать везде одинаковые слова
 
   const arrayOfDropElements = [
     {
       id: 1,
       name: "elephant",
-      src: "Images_18/dnd_single/03-1.png",
-      audioSrc: "sound/dnd_single/007.mp3",
+      src: "Images_18/dnd_OneToOne/03-1.png",
+      audioSrc: "sound/dnd_OneToOne/elephant_1.mp3",
       title: "",
       tag: "elephant",
     },
     {
       id: 2,
       name: "cat",
-      src: "Images_18/dnd_single/03-2.png",
+      src: "Images_18/dnd_OneToOne/03-2.png",
       title: "",
-      audioSrc: "sound/dnd_single/009.mp3",
+      audioSrc: "sound/dnd_OneToOne/cat_1.mp3",
       tag: "cat",
     },
     {
       id: 3,
       name: "wolf",
-      src: "Images_18/dnd_single/03-3.png",
+      src: "Images_18/dnd_OneToOne/03-3.png",
       title: "",
-      audioSrc: "sound/dnd_single/011.mp3",
+      audioSrc: "sound/dnd_OneToOne/wolf_1.mp3",
       tag: "wolf",
     },
   ];
@@ -43,35 +43,35 @@
     {
       id: 1,
       name: "elephant",
-      srcTwo: "Images_18/dnd_single/1_1.png",
+      srcTwo: "Images_18/dnd_OneToOne/1_1.png",
       titleTwo: "",
       tag: "elephant",
     },
     {
       id: 2,
       name: "cat",
-      srcTwo: "Images_18/dnd_single/1_2.png",
+      srcTwo: "Images_18/dnd_OneToOne/1_2.png",
       titleTwo: "",
       tag: "cat",
     },
     {
       id: 3,
       name: "wolf",
-      srcTwo: "Images_18/dnd_single/1_3.png",
+      srcTwo: "Images_18/dnd_OneToOne/1_3.png",
       titleTwo: "",
       tag: "wolf",
     },
     {
       id: 4,
       name: "oak",
-      srcTwo: "Images_18/dnd_single/1_4.png",
+      srcTwo: "Images_18/dnd_OneToOne/1_4.png",
       titleTwo: "",
       tag: "oak",
     },
     {
       id: 5,
       name: "maple",
-      srcTwo: "Images_18/dnd_single/1_5.png",
+      srcTwo: "Images_18/dnd_OneToOne/1_5.png",
       titleTwo: "",
       tag: "maple",
     },
@@ -110,7 +110,7 @@
     {
       id: 1,
       name: "zebra",
-      src: "Images_18/dnd_single/09-1.png",
+      src: "Images_18/dnd_OneToOne/09-1.png",
 
       audioSrc: "",
       title: "",
@@ -120,7 +120,7 @@
     {
       id: 2,
       name: "cow",
-      src: "Images_18/dnd_single/09-2.png",
+      src: "Images_18/dnd_OneToOne/09-2.png",
 
       title: "",
 
@@ -130,7 +130,7 @@
     {
       id: 3,
       name: "lion",
-      src: "Images_18/dnd_single/09-3.png",
+      src: "Images_18/dnd_OneToOne/09-3.png",
 
       title: "",
 
@@ -140,7 +140,7 @@
     {
       id: 4,
       name: "hippo",
-      src: "Images_18/dnd_single/09-4.png",
+      src: "Images_18/dnd_OneToOne/09-4.png",
 
       title: "",
 
@@ -150,7 +150,7 @@
     {
       id: 5,
       name: "fox",
-      src: "Images_18/dnd_single/09-5.png",
+      src: "Images_18/dnd_OneToOne/09-5.png",
 
       title: "",
 
@@ -163,7 +163,7 @@
       id: 1,
       name: "zebra",
 
-      srcTwo: "Images_18/dnd_single/09-6.jpg",
+      srcTwo: "Images_18/dnd_OneToOne/09-6.jpg",
 
       titleTwo: "",
       tag: "zebra",
@@ -172,7 +172,7 @@
       id: 2,
       name: "cow",
 
-      srcTwo: "Images_18/dnd_single/09-7.jpg",
+      srcTwo: "Images_18/dnd_OneToOne/09-7.jpg",
 
       titleTwo: "",
 
@@ -182,7 +182,7 @@
       id: 3,
       name: "lion",
 
-      srcTwo: "Images_18/dnd_single/09-8.jpg",
+      srcTwo: "Images_18/dnd_OneToOne/09-8.jpg",
 
       titleTwo: "",
 
@@ -192,7 +192,7 @@
       id: 4,
       name: "hippo",
 
-      srcTwo: "Images_18/dnd_single/09-9.jpg",
+      srcTwo: "Images_18/dnd_OneToOne/09-9.jpg",
 
       titleTwo: "",
 
@@ -202,7 +202,7 @@
       id: 5,
       name: "fox",
 
-      srcTwo: "Images_18/dnd_single/09-10.jpg",
+      srcTwo: "Images_18/dnd_OneToOne/09-10.jpg",
 
       titleTwo: "",
 
@@ -246,8 +246,8 @@ function renderDnDSingleMarkup(
   const drop = headCheck.querySelector(".drop");
   const check_your = headCheck.querySelector(".check_your");
   const result = headCheck.querySelector(".result");
-  const dropBox = taskWrapper.querySelector(".dropPlaceWrapper");
-  const dragBox = taskWrapper.querySelector(".dragPlaceWrapper");
+  const dropBox = taskWrapper.querySelector(".dnd_OneToOne_dropPlaceWrapper");
+  const dragBox = taskWrapper.querySelector(".dnd_OneToOne_dragPlaceWrapper");
 
   dropBox.insertAdjacentHTML(
     "beforeend",
@@ -258,7 +258,7 @@ function renderDnDSingleMarkup(
     createDragPictureCardsMarkup(shuffleCards([...arrayOfDragElements]))
   );
 
-  const audioFiles = taskWrapper.querySelectorAll(".dndOneToOne_audio");
+  const audioFiles = taskWrapper.querySelectorAll(".dnd_OneToOne_audio");
 
   [...dragBox.children].forEach((el) => {
     el.addEventListener("pointerdown", mouseDown);
@@ -268,16 +268,19 @@ function renderDnDSingleMarkup(
 
   dropBox.addEventListener("click", onDropBoxClick);
 
-  [...audioFiles].forEach((el) =>
+  [...audioFiles].forEach((el) => {
     el.addEventListener("ended", (e) => {
       e.target
         .closest(".buttonPlayPausePlayPause_wrap")
         .classList.remove("buttonPlayPause--active");
-    })
-  );
+
+      isPlaying = true;
+      resetSound(currentSound);
+    });
+  });
 
   function onDropBoxClick(e) {
-    if (e.target.classList.contains("dropPicture")) {
+    if (e.target.classList.contains("dnd_OneToOne_dropPicture")) {
       scaleImage(e.target);
     }
 
@@ -344,6 +347,8 @@ function renderDnDSingleMarkup(
         item.children[2].style.order = randomPos;
         dragBox.appendChild(item.children[2]);
       }
+      item.children[1].classList.remove("rightChoice_answered");
+      item.children[1].classList.remove("wrongChoice_answered");
     });
 
     resetSound(currentSound);
@@ -363,7 +368,8 @@ function renderDnDSingleMarkup(
           item.children[2].attributes.getNamedItem("drag-data").value
       ) {
         winVar += 1;
-      }
+        item.children[1].classList.add("rightChoice_answered");
+      } else item.children[1].classList.add("wrongChoice_answered");
     });
     if (winVar === arrayOfDropElements.length) {
       feedBackChanger("win");
@@ -397,34 +403,38 @@ function renderDnDSingleMarkup(
 
   function removeActiveCardClass() {
     const currentActiveCard = document.querySelector(
-      ".dragPicture_box.dnd-check"
+      ".dnd_OneToOne_dragPicture_box.dnd_OneToOne_dnd-check"
     );
 
     if (currentActiveCard) {
-      currentActiveCard.classList.remove("dnd-check");
+      currentActiveCard.classList.remove("dnd_OneToOne_dnd-check");
     }
   }
 
   function addCheckClass(card) {
-    card.classList.add("dnd-check");
+    card.classList.add("dnd_OneToOne_dnd-check");
   }
 
   function mouseDown(event) {
+    let dragElPosition;
     if (event.button !== 0) return;
     startAction = true;
     checkButton_classList_changer();
     if (
-      !event.target.classList.contains("dragPicture") &&
-      !event.target.classList.contains("dragPicture_box") &&
-      !event.target.classList.contains("dragTitle")
+      !event.target.classList.contains("dnd_OneToOne_dragPicture") &&
+      !event.target.classList.contains("dnd_OneToOne_dragPicture_box") &&
+      !event.target.classList.contains("dnd_OneToOne_dragTitle")
     )
       return;
 
+    // console.log(event.target.parentElement.parentElement);
     draggingItem =
-      event.target.classList.contains("dragPicture") ||
-      event.target.classList.contains("dragTitle")
+      event.target.classList.contains("dnd_OneToOne_dragPicture") ||
+      event.target.classList.contains("dnd_OneToOne_dragTitle")
         ? event.target.parentElement
         : event.target;
+
+    dragElPosition = draggingItem.parentElement;
 
     draggingItem.style.touchAction = "none";
     const findIdx = [...dragBox.children].findIndex(
@@ -504,10 +514,21 @@ function renderDnDSingleMarkup(
 
     draggingItem.onpointerup = function () {
       if (clickWithoutMove) {
-        if (event.target.classList.contains("dragPicture_box")) {
+        if (dragElPosition.classList.contains("dnd_OneToOne_dropPlace")) {
+          dropAppend(dragElPosition, draggingItem);
+          draggingItem.classList.remove("dnd_OneToOne_dnd-check");
+        } else if (
+          dragElPosition.classList.contains("dnd_OneToOne_dragPlaceWrapper")
+        ) {
+          dragAppend(dragBox, draggingItem, findIdx);
+        }
+        if (event.target.classList.contains("dnd_OneToOne_dragPicture_box")) {
           setTimeout(() => scaleImage(event.target.firstElementChild), 0);
-        } else setTimeout(() => scaleImage(event.target), 0);
-        dragAppend(dragBox, draggingItem, findIdx);
+        } else if (
+          event.target.classList.contains("dnd_OneToOne_dragPicture")
+        ) {
+          setTimeout(() => scaleImage(event.target), 0);
+        }
 
         return document.removeEventListener("pointermove", onMouseMove);
       }
@@ -515,13 +536,15 @@ function renderDnDSingleMarkup(
 
       draggingItem.style.cursor = "grab";
 
-      if (elemBelow.classList.contains("dropPlace_imageBox")) {
+      if (elemBelow.classList.contains("dnd_OneToOne_dropPlace_imageBox")) {
         dropAppend(elemBelow.parentElement, draggingItem);
 
-        draggingItem.classList.remove("dnd-check");
+        draggingItem.classList.remove("dnd_OneToOne_dnd-check");
       } else {
         dragAppend(dragBox, draggingItem, findIdx);
       }
+
+      draggingItem = null;
     };
   }
 
@@ -545,18 +568,20 @@ function renderDnDSingleMarkup(
     dropPlace.appendChild(draggingElem);
     changeStyles(draggingElem);
   }
+
   function createDropPictureCardsMarkup(pictures) {
     return pictures
       .map((picture) => {
         const isTitle = picture.title
-          ? `<h3 class='dropTitle'>${picture.title}</h3>`
+          ? `<h3 class='dnd_OneToOne_dropTitle'>${picture.title}</h3>`
           : "";
+
         const isSound = picture.audioSrc
-          ? `<div class='soundBox' drop-data=${picture.id}>
+          ? `<div class='dnd_OneToOne_soundBox' drop-data=${picture.id}>
                 <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play">
                     <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
                     <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
-                    <audio class="dndOneToOne_audio" id=${picture.id} src=${picture.audioSrc}>
+                    <audio class="dnd_OneToOne_audio" id=${picture.id} src=${picture.audioSrc}>
                               Your browser does not support the
                               <code>audio</code> element.
                     </audio>
@@ -564,13 +589,13 @@ function renderDnDSingleMarkup(
             </div>`
           : "";
 
-        return `<div class="dropPlace">
-                    <div class="dropPicture_box">
-                        <div class="dropPicture" style="background-image: url(${picture.src})"></div>
+        return `<div class="dnd_OneToOne_dropPlace">
+                    <div class="dnd_OneToOne_dropPicture_box">
+                        <div class="dnd_OneToOne_dropPicture" style="background-image: url(${picture.src})"></div>
                         ${isSound}
                         ${isTitle}
                     </div>
-                    <div drop-data=${picture.tag} class ="dropPlace_imageBox"></div>
+                    <div drop-data=${picture.tag} class ="dnd_OneToOne_dropPlace_imageBox"></div>
                 </div>
 
                                   `;
@@ -581,13 +606,13 @@ function renderDnDSingleMarkup(
     return pictures
       .map((picture) => {
         const isTitle = picture.titleTwo
-          ? `<h3 class='dragTitle'>${picture.titleTwo}</h3>`
+          ? `<h3 class='dnd_OneToOne_dragTitle'>${picture.titleTwo}</h3>`
           : "";
         const isImage = picture.srcTwo
-          ? `<div class="dragPicture" style="background-image: url(${picture.srcTwo})" draggable="false">
+          ? `<div class="dnd_OneToOne_dragPicture" style="background-image: url(${picture.srcTwo})" draggable="false">
                     </div>`
           : "";
-        return `<div class="dragPicture_box" draggable="false" drag-data=${picture.tag}>
+        return `<div class="dnd_OneToOne_dragPicture_box" draggable="false" drag-data=${picture.tag}>
                     ${isImage}
 
                     ${isTitle}
