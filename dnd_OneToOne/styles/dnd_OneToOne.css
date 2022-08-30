@@ -1,4 +1,4 @@
-.comparePicturesWrapper {
+.dnd_OneToOne_comparePicturesWrapper {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -19,7 +19,7 @@
   -ms-flex-align: center;
   align-items: center;
 }
-.dropPlaceWrapper {
+.dnd_OneToOne_dropPlaceWrapper {
   width: 100%;
 
   height: 450px;
@@ -38,7 +38,7 @@
   margin-bottom: 20px;
 }
 
-.dragPlaceWrapper {
+.dnd_OneToOne_dragPlaceWrapper {
   width: 100%;
   height: 150px;
   display: -webkit-box;
@@ -55,13 +55,13 @@
   margin-bottom: 20px;
 }
 
-.dropPlace {
+.dnd_OneToOne_dropPlace {
   width: 140px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.dropPicture_box {
+.dnd_OneToOne_dropPicture_box {
   border: 2px solid #99999b;
   border-radius: 12px;
   margin-bottom: 10px;
@@ -88,7 +88,7 @@
   box-sizing: border-box;
 }
 
-.dropPicture {
+.dnd_OneToOne_dropPicture {
   width: 100%;
 
   height: 70%;
@@ -104,11 +104,11 @@
   background-size: contain;
   background-position: center;
 }
-.dropPicture:hover {
+.dnd_OneToOne_dropPicture:hover {
   cursor: pointer;
 }
 
-.dragPicture_box {
+.dnd_OneToOne_dragPicture_box {
   width: 140px;
 
   height: 140px;
@@ -131,7 +131,7 @@
   box-sizing: border-box;
 }
 
-.dropPlace_imageBox {
+.dnd_OneToOne_dropPlace_imageBox {
   position: absolute;
   width: 140px;
 
@@ -142,7 +142,7 @@
   box-sizing: border-box;
 }
 
-.dragPicture {
+.dnd_OneToOne_dragPicture {
   border-radius: 12px;
   width: 100%;
   height: 100%;
@@ -152,15 +152,15 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.dragTitle,
-.dropTitle {
+.dnd_OneToOne_dragTitle,
+.dnd_OneToOne_dropTitle {
   color: #000;
   margin-bottom: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.dragTitle {
+.dnd_OneToOne_dragTitle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -172,11 +172,11 @@
   align-items: center;
   margin-top: 0;
 }
-.dndOneToOne_audio {
+.dnd_OneToOne_audio {
   display: none !important;
 }
 
-.soundBox {
+.dnd_OneToOne_soundBox {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
@@ -185,29 +185,29 @@
   height: 23px;
 }
 
-.dnd-check {
+.dnd_OneToOne_dnd-check {
   border-color: rgba(29, 101, 255, 0.6431372549019608);
   border-width: 5px;
 }
 
 @media screen and (max-width: 1370px) {
-  .comparePicturesWrapper {
+  .dnd_OneToOne_comparePicturesWrapper {
     height: 600px;
   }
-  .dropPlaceWrapper {
+  .dnd_OneToOne_dropPlaceWrapper {
     height: 300px;
   }
-  .dropPlaceWrapper,
-  .dragPlaceWrapper {
+  .dnd_OneToOne_dropPlaceWrapper,
+  .dnd_OneToOne_dragPlaceWrapper {
     width: 580px;
   }
 
-  .dropPicture_box {
+  .dnd_OneToOne_dropPicture_box {
     height: 200px;
   }
-  .dropPlace_imageBox,
-  .dragPicture_box,
-  .dropPlace {
+  .dnd_OneToOne_dropPlace_imageBox,
+  .dnd_OneToOne_dragPicture_box,
+  .dnd_OneToOne_dropPlace {
     width: 95px;
     height: 95px;
   }
