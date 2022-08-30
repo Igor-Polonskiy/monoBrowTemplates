@@ -8,17 +8,17 @@
   // Если какие-то поля не нужны, то ставится ''
   // в поле tag пишется уникальное слово для каждой пары сопоставляемых элементов, по которому сверяется правильность сопоставления
   // в поле id пишется уникальное значение, по которому воспроизводятся звуки
-  // два массива с данными: в первщм указываются данные по верхнему ряду, во втором по нижнему,
+  // два массива с данными: в первом указываются данные по верхнему ряду, во втором по нижнему,
 
   // Если перемещаемые элементы просто нужно сопоставить с другими (без строгих ограничений),
-  // то в поле tag прописать одинаковые слова
+  // то в поле tag прописать везде одинаковые слова
 
   const arrayOfDropElements = [
     {
       id: 1,
       name: "elephant",
       src: "Images_18/dnd_OneToOne/03-1.png",
-      audioSrc: "sound/dnd_OneToOne/007.mp3",
+      audioSrc: "sound/dnd_OneToOne/elephant_1.mp3",
       title: "",
       tag: "elephant",
     },
@@ -27,7 +27,7 @@
       name: "cat",
       src: "Images_18/dnd_OneToOne/03-2.png",
       title: "",
-      audioSrc: "sound/dnd_OneToOne/009.mp3",
+      audioSrc: "sound/dnd_OneToOne/cat_1.mp3",
       tag: "cat",
     },
     {
@@ -35,7 +35,7 @@
       name: "wolf",
       src: "Images_18/dnd_OneToOne/03-3.png",
       title: "",
-      audioSrc: "sound/dnd_OneToOne/011.mp3",
+      audioSrc: "sound/dnd_OneToOne/wolf_1.mp3",
       tag: "wolf",
     },
   ];
@@ -60,6 +60,20 @@
       srcTwo: "Images_18/dnd_OneToOne/1_3.png",
       titleTwo: "",
       tag: "wolf",
+    },
+    {
+      id: 4,
+      name: "oak",
+      srcTwo: "Images_18/dnd_OneToOne/1_4.png",
+      titleTwo: "",
+      tag: "oak",
+    },
+    {
+      id: 5,
+      name: "maple",
+      srcTwo: "Images_18/dnd_OneToOne/1_5.png",
+      titleTwo: "",
+      tag: "maple",
     },
     {
       id: 4,
@@ -268,7 +282,7 @@ function renderDnDSingleMarkup(
 
   dropBox.addEventListener("click", onDropBoxClick);
 
-  [...audioFiles].forEach((el) =>
+  [...audioFiles].forEach((el) => {
     el.addEventListener("ended", (e) => {
       e.target
         .closest(".buttonPlayPausePlayPause_wrap")
@@ -276,8 +290,8 @@ function renderDnDSingleMarkup(
 
       isPlaying = true;
       resetSound(currentSound);
-    })
-  );
+    });
+  });
 
   function onDropBoxClick(e) {
     if (e.target.classList.contains("dnd_OneToOne_dropPicture")) {
@@ -431,21 +445,8 @@ function renderDnDSingleMarkup(
         ? event.target.parentElement
         : event.target;
 
-    // console.log(draggingItem.parentElement);
     dragElPosition = draggingItem.parentElement;
-    console.log(
-      "🚀 ~ file: dnd_OneToOne.js ~ line 433 ~ mouseDown ~ dragElPosition",
-      dragElPosition
-    );
-    // if (
-    //   draggingItem.parentElement.classList.contains("dnd_OneToOne_dropPlace")
-    // ) {
-    //   draggingItem.removeEventListener("pointerup", onPointerUp);
-    //   if (event.target.classList.contains("dnd_OneToOne_dragPicture_box")) {
-    //     setTimeout(() => scaleImage(event.target.firstElementChild), 0);
-    //   } else setTimeout(() => scaleImage(event.target), 0);
-    //   // return;
-    // }
+
     draggingItem.style.touchAction = "none";
     const findIdx = [...dragBox.children].findIndex(
       (el) => el === draggingItem
@@ -521,66 +522,24 @@ function renderDnDSingleMarkup(
       window.removeEventListener("pointerup", moveOut);
       document.removeEventListener("pointermove", onMouseMove);
     }
-    // draggingItem.addEventListener("pointerup", onPointerUp);
-
-    // function onPointerUp(event) {
-    //   // console.log(event.target);
-    //   console.log(draggingItem.parentElement);
-    //   if (clickWithoutMove) {
-    //     if (!dragElPosition.classList.contains("dnd_OneToOne_dropPlace")) {
-    //       dragAppend(dragBox, draggingItem, findIdx);
-    //     }
-    //     if (event.target.classList.contains("dnd_OneToOne_dragPicture_box")) {
-    //       setTimeout(() => scaleImage(event.target.firstElementChild), 0);
-    //     } else setTimeout(() => scaleImage(event.target), 0);
-    //     // if (
-    //     //   draggingItem.parentElement.classList.contains(
-    //     //     "dnd_OneToOne_dropPlace"
-    //     //   )
-    //     // ) {
-    //     //   console.log(123);
-    //     //   return;
-    //     // } else dragAppend(dragBox, draggingItem, findIdx);
-    //     // dragAppend(dragBox, draggingItem, findIdx);
-
-    //     return document.removeEventListener("pointermove", onMouseMove);
-    //   }
-    //   document.removeEventListener("pointermove", onMouseMove);
-
-    //   draggingItem.style.cursor = "grab";
-
-    //   if (elemBelow.classList.contains("dnd_OneToOne_dropPlace_imageBox")) {
-    //     dropAppend(elemBelow.parentElement, draggingItem);
-
-    //     draggingItem.classList.remove("dnd_OneToOne_dnd-check");
-    //   } else {
-    //     dragAppend(dragBox, draggingItem, findIdx);
-    //   }
-    //   draggingItem.removeEventListener("pointerup", onPointerUp);
-    //   // dragElPosition = null;
-    // }
 
     draggingItem.onpointerup = function () {
-      // console.log(draggingItem.parentElement);
       if (clickWithoutMove) {
-        // console.log(dragElPosition);
         if (dragElPosition.classList.contains("dnd_OneToOne_dropPlace")) {
           dropAppend(dragElPosition, draggingItem);
-          // if (event.target.classList.contains("dnd_OneToOne_dragPicture_box")) {
-          //   setTimeout(() => scaleImage(event.target.firstElementChild), 0);
-          // } else setTimeout(() => scaleImage(event.target), 0);
+          draggingItem.classList.remove("dnd_OneToOne_dnd-check");
         } else if (
           dragElPosition.classList.contains("dnd_OneToOne_dragPlaceWrapper")
         ) {
-          // if (event.target.classList.contains("dnd_OneToOne_dragPicture_box")) {
-          //   setTimeout(() => scaleImage(event.target.firstElementChild), 0);
-          // } else setTimeout(() => scaleImage(event.target), 0);
           dragAppend(dragBox, draggingItem, findIdx);
         }
         if (event.target.classList.contains("dnd_OneToOne_dragPicture_box")) {
           setTimeout(() => scaleImage(event.target.firstElementChild), 0);
-        } else setTimeout(() => scaleImage(event.target), 0);
-        // dragAppend(dragBox, draggingItem, findIdx);
+        } else if (
+          event.target.classList.contains("dnd_OneToOne_dragPicture")
+        ) {
+          setTimeout(() => scaleImage(event.target), 0);
+        }
 
         return document.removeEventListener("pointermove", onMouseMove);
       }
@@ -595,7 +554,7 @@ function renderDnDSingleMarkup(
       } else {
         dragAppend(dragBox, draggingItem, findIdx);
       }
-      // dragElPosition = null;
+
       draggingItem = null;
     };
   }
