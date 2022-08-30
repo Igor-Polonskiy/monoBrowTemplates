@@ -255,9 +255,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
 
   function mouseDown(event) {
     if (event.button !== 0) return;
-    console.log(event.target)
     if (event.target.classList.contains('buttonPlayPausePlayPause_wrap')) {
-      console.log('return')
       return;
     }
     /*if (
@@ -347,7 +345,6 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
     draggingItem.addEventListener('pointerup', onpointerup)
 
     function onpointerup(event) {
-      console.log('pointerup', event.target)
       startAction = true;
       checkButton_classList_changer();
       if (clickWithoutMove) {
@@ -523,7 +520,6 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
   function onSoundIconClick(e) {
     let isPlaying = false;
     e.stopPropagation()
-    console.log('play')
     //findSoundAndPlayPause("drop-data", e.target);
     const audio = [...audioFiles].find(
       (el) => el.id === e.target.getAttribute('drop-data')
