@@ -343,6 +343,8 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
         [...item.children[1].children].forEach(el => {
           let randomPos = Math.floor(Math.random() * 12);
           el.style.order = randomPos;
+          el.classList.remove('rightChoice_answered')
+          el.classList.remove('wrongChoice_answered')
           dragBox.appendChild(el);
         });
       }
@@ -355,6 +357,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
     infoBox.textContent = '';*/
 
     draggingItem = null;
+    task.addEventListener('pointerdown', mouseDown);
   }
   function onBtnTestClick() {
     let winVar = 0;
@@ -366,11 +369,13 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder) {
             el.attributes.getNamedItem('drag-data').value
           ) {
             winVar += 1;
-          }
+            el.classList.add('rightChoice_answered')
+          }else el.classList.add('wrongChoice_answered')
         });
       }
     });
-
+    
+    task.removeEventListener('pointerdown', mouseDown);
     if (winVar === dragCards.length) {
       /*controlsBox.style.backgroundColor = 'lightgreen';
       infoBox.textContent = '👍 Молодец!';*/

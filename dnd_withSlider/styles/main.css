@@ -230,6 +230,14 @@ h3 {
   transform: rotate(-135deg);
   left: 19px;
 }
+.wrongChoice_answered {
+  -webkit-box-shadow: 0px 0px 7px 7px lightpink, 0px 0px 10px 0px lightpink;
+  box-shadow: 0px 0px 7px 7px lightpink, 0px 0px 10px 0px lightpink;
+}
+.rightChoice_answered {
+  -webkit-box-shadow: 0px 0px 7px 7px lightgreen, 0px 0px 10px 0px lightgreen;
+  box-shadow: 0px 0px 7px 7px lightgreen, 0px 0px 10px 0px lightgreen;
+}
 @media screen and (max-width: 1370px) {
   .border-container {
     max-width: 600px;
