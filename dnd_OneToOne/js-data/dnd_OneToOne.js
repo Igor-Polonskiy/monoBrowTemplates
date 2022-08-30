@@ -75,20 +75,6 @@
       titleTwo: "",
       tag: "maple",
     },
-    {
-      id: 4,
-      name: "oak",
-      srcTwo: "Images_18/dnd_OneToOne/1_4.png",
-      titleTwo: "",
-      tag: "oak",
-    },
-    {
-      id: 5,
-      name: "maple",
-      srcTwo: "Images_18/dnd_OneToOne/1_5.png",
-      titleTwo: "",
-      tag: "maple",
-    },
   ];
 
   // это контейнер для данного задания, для каждого нужно будет вписывать свой id, который был присвоен в html
