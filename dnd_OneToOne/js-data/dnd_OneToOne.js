@@ -347,6 +347,8 @@ function renderDnDSingleMarkup(
         item.children[2].style.order = randomPos;
         dragBox.appendChild(item.children[2]);
       }
+      item.children[1].classList.remove("rightChoice_answered");
+      item.children[1].classList.remove("wrongChoice_answered");
     });
 
     resetSound(currentSound);
@@ -366,7 +368,8 @@ function renderDnDSingleMarkup(
           item.children[2].attributes.getNamedItem("drag-data").value
       ) {
         winVar += 1;
-      }
+        item.children[1].classList.add("rightChoice_answered");
+      } else item.children[1].classList.add("wrongChoice_answered");
     });
     if (winVar === arrayOfDropElements.length) {
       feedBackChanger("win");
