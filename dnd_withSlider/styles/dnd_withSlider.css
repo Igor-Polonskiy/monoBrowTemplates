@@ -156,6 +156,10 @@
   opacity: 0;
   cursor: auto;
 }
+.withSlider_dndIWS_audio{
+  display: none !important;
+}
+
 
 @media screen and (max-width: 1370px) {
   .withSlider_comparePicturesWrapper {
