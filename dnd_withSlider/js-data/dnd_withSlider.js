@@ -110,13 +110,13 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
   const check_your = headCheck.querySelector('.check_your');
   const result = headCheck.querySelector('.result');
 
-  
+
   const dropBox = task.querySelector('.dropPlaceWrapper');
   const dragBox = task.querySelector('.slider_box');
   const leftBtn = task.querySelector('.arrowButton_left_event');
   const rightBtn = task.querySelector('.arrowButton_right_event');
   const dropBoxWidth = dropBox.clientWidth
- 
+
   const checkTask = task.querySelector('.checkTask');
 
   dropBox.insertAdjacentHTML(
@@ -197,12 +197,12 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
 
   function feedBackChanger(state) {
     if (startAction && state === 'win' || state === 'lose') {
-        result.classList.add(`result_${state}`);
+      result.classList.add(`result_${state}`);
     } else {
-        result.classList.remove(`result_win`);
-        result.classList.remove(`result_lose`);
+      result.classList.remove(`result_win`);
+      result.classList.remove(`result_lose`);
     }
-}
+  }
 
   function onBtnResetClick() {
     startAction = false;
@@ -223,7 +223,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
     dragBox.style.left = `${sliderShift}px`;
     /*controlsBox.style = '';
     infoBox.textContent = '';*/
-    
+
     draggingItem = null;
   }
   function onBtnTestClick() {
@@ -255,17 +255,22 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
 
   function mouseDown(event) {
     if (event.button !== 0) return;
-
-    if (
+    console.log(event.target)
+    if (event.target.classList.contains('buttonPlayPausePlayPause_wrap')) {
+      console.log('return')
+      return;
+    }
+    /*if (
       !event.target.classList.contains('dragPicture') &&
       !event.target.classList.contains('dragPicture_box')
       
     )
-      return;
-
-    draggingItem = event.target.classList.contains('dragPicture')
-      ? event.target.parentElement
-      : event.target;
+      return;*/
+     if (event.target.classList.contains('dragPicture')) {
+      draggingItem = event.target.parentElement
+    } else if (event.target.classList.contains('dragPicture_box')) {
+      draggingItem = event.target;
+    } else return
 
     const findIdx = [...dragBox.children].findIndex(el => el === draggingItem);
 
@@ -339,16 +344,17 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       window.removeEventListener('pointerup', moveOut);
       document.removeEventListener('pointermove', onMouseMove);
     }
+    draggingItem.addEventListener('pointerup', onpointerup)
 
-    draggingItem.onpointerup = function () {
-      console.log('pointerup',event.target )
+    function onpointerup(event) {
+      console.log('pointerup', event.target)
       startAction = true;
       checkButton_classList_changer();
       if (clickWithoutMove) {
-        if(event.target.classList.contains('buttonPlayPausePlayPause_wrap')){
+        /*if (event.target.classList.contains('buttonPlayPausePlayPause_wrap')) {
           onSoundIconClick(event)
           return
-        }
+        }*/
         if (event.target.classList.contains('dragPlace')) {
           setTimeout(
             () =>
@@ -394,9 +400,11 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
         rightBtn.classList.add('is-disabled');
       }
       sliderShift = 0;
-    sliderSize = dragBox.scrollWidth;
-    showArrows();
+      sliderSize = dragBox.scrollWidth;
+      showArrows();
+      dragBox.style.left = `${sliderShift}px`;
       
+      draggingItem.removeEventListener('pointerup', onpointerup)
     };
   }
 
@@ -449,14 +457,14 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       .map(picture => {
         const isSound =
           picture.audioSrc &&
-         /* `<div class="icon_speaker_button dropTitleSound" drop-data=${picture.id}>
-                            <div class="icon_speaker_volume"></div>
-                            <button class="drag_sound_icon" drop-data=${picture.id}>123</button>
-                            <audio class="dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none">
-                              Your browser does not support the <code>audio</code> element.
-                            </audio>
-                        </div>`*/
-                        `
+          /* `<div class="icon_speaker_button dropTitleSound" drop-data=${picture.id}>
+                             <div class="icon_speaker_volume"></div>
+                             <button class="drag_sound_icon" drop-data=${picture.id}>123</button>
+                             <audio class="dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none">
+                               Your browser does not support the <code>audio</code> element.
+                             </audio>
+                         </div>`*/
+          `
                       <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" drop-data=${picture.id}>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
@@ -511,7 +519,7 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       isPaused = false;
     })
   );*/
-  
+
   function onSoundIconClick(e) {
     let isPlaying = false;
     e.stopPropagation()
@@ -521,17 +529,17 @@ function renderImagesChronologyMarkup(dropCards, dragCards, task, imageFolder, d
       (el) => el.id === e.target.getAttribute('drop-data')
     );
     isPlaying ? audio.pause() : audio.play();
-            e.target.classList.toggle('buttonPlayPause--active');
-            audio.onplaying = function () {
-                isPlaying = true;
-            };
-            audio.onpause = function () {
-                isPlaying = false;
-            };
-            audio.onended = function () {
-                e.target.classList.remove('buttonPlayPause--active');
-                isPlaying = false;
-            }; 
+    e.target.classList.toggle('buttonPlayPause--active');
+    audio.onplaying = function () {
+      isPlaying = true;
+    };
+    audio.onpause = function () {
+      isPlaying = false;
+    };
+    audio.onended = function () {
+      e.target.classList.remove('buttonPlayPause--active');
+      isPlaying = false;
+    };
     //findedSound.play()
   }
   /*function findSoundAndPlayPause(attrName, target) {
