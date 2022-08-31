@@ -67,7 +67,7 @@
 }
 
 .withSlider_dropPlace_imageBox {
-  position: absolute;
+  /*position: absolute;*/
   /*width: 250px;*/
   height: 220px;
   border: 2px dashed #99999b;
