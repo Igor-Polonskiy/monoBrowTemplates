@@ -1,3 +1,4 @@
+
 /**,
 :after,
 :before {
@@ -35,21 +36,35 @@ h3 {
 }
 
 .comparePicturesWrapper {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 100%;
   /* height: 90%; */
   height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .resetButton,
 .checkButton {
   cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
+  -webkit-box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
+          box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
   border: none;
   border-radius: 12px;
   background-color: #0ab7d3;
@@ -59,23 +74,37 @@ h3 {
   min-width: 100px;
 }
 .show-answer-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .show-answer-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 26px;
 }
 
 .leftButton {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   margin: 0 1vw 0 0;
 }
 
 .rightButton {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   margin: 0 0 0 1vw;
 }
 .checkTask {
@@ -152,11 +181,19 @@ h3 {
   background-color: #dde7fd;
   border-radius: 25px;
   position: relative;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .sliderContent_button:hover {
   background-color: #dde7fda1;
@@ -171,7 +208,8 @@ h3 {
   padding: 0;
 
   white-space: nowrap;
-  clip-path: inset(100%);
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
@@ -186,6 +224,7 @@ h3 {
   top: 0;
   right: 0;
   background-image: url('/10/Images_10/expand.svg');
+  cursor: -webkit-zoom-in;
   cursor: zoom-in;
   /* z-index: 30; */
 }
